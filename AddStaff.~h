@@ -1,0 +1,73 @@
+//---------------------------------------------------------------------------
+
+#ifndef AddStaffH
+#define AddStaffH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <Buttons.hpp>
+#include <ComCtrls.hpp>
+#include <DBCtrls.hpp>
+#include <DBGrids.hpp>
+#include <Grids.hpp>
+//---------------------------------------------------------------------------
+class TAddStaffForm : public TForm
+{
+__published:	// IDE-managed Components
+        TGroupBox *GroupBox2;
+        TPageControl *PageControl1;
+        TTabSheet *TabSheet1;
+        TLabel *Label2;
+        TEdit *FNameEdit;
+        TLabel *Label4;
+        TEdit *SNameEdit;
+        TLabel *Label3;
+        TEdit *LNameEdit;
+        TLabel *Label5;
+        TEdit *EGNEdit;
+        TBitBtn *NextBtn1;
+        TTabSheet *TabSheet2;
+        TLabel *Label6;
+        TEdit *TelEdit;
+        TLabel *Label7;
+        TEdit *EmailEdit;
+        TLabel *Label13;
+        TLabel *Label11;
+        TEdit *StreetEdit;
+        TLabel *Label12;
+        TBitBtn *NextBtn2;
+        TTabSheet *TabSheet3;
+        TLabel *Label8;
+        TEdit *UNameEdit;
+        TLabel *Label9;
+        TEdit *PassEdit;
+        TLabel *Label10;
+        TEdit *ConfPassEdit;
+        TBitBtn *BackBtn1;
+        TBitBtn *BackBtn2;
+        TEdit *PKEdit;
+        TBitBtn *SaveBtn;
+        TLabel *Label1;
+        TEdit *CityEdit;
+        TBitBtn *BitBtn2;
+        TCheckBox *AdminCheck;
+        void __fastcall FormShow(TObject *Sender);
+        void __fastcall NextBtn1Click(TObject *Sender);
+        void __fastcall BackBtn1Click(TObject *Sender);
+        void __fastcall NextBtn2Click(TObject *Sender);
+        void __fastcall BackBtn2Click(TObject *Sender);
+        void __fastcall SaveBtnClick(TObject *Sender);
+        void __fastcall CityEditClick(TObject *Sender);
+        void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+        void __fastcall TelEditKeyPress(TObject *Sender, char &Key);
+private:	// User declarations
+public:		// User declarations
+        int SCityID;
+        __fastcall TAddStaffForm(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TAddStaffForm *AddStaffForm;
+//---------------------------------------------------------------------------
+#endif
