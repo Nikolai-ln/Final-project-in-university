@@ -88,7 +88,7 @@ void __fastcall TAddInvMasForm::OkBtnClick(TObject *Sender)
 {
         if(StaffEdit->Text=="" || DelivererEdit->Text=="" || RecipientEdit->Text=="")
         {
-                ShowMessage("Моля, попълнете всички полета!");
+                ShowMessage("Моля, попълнете всички полет!");
                 return;
         }
         
