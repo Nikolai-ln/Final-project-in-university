@@ -1,0 +1,51 @@
+SET TERM ^ ;
+
+CREATE PROCEDURE INSERT_INVOICE_MASTER (
+    invoice_num integer,
+    invoice_date date,
+    staff_id integer,
+    recipient_partner_id integer,
+    deliverer_partner_id integer,
+    delivery_id integer,
+    invoice_type smallint)
+returns (
+    id integer)
+as
+declare variable invoice_detail_id integer;
+declare variable item_id integer;
+declare variable delivery_quantity decimal(10,3);
+declare variable delivery_price decimal(10,2);
+begin
+  ID = GEN_ID(ID_GEN_INVOICEMASTERTBL,1);
+  INSERT INTO INVOICE_MASTER_TBL (INVOICE_MASTER_ID, INVOICE_NUM, INVOICE_DATE, STAFF_ID, RECIPIENT_PARTNER_ID, DELIVERER_PARTNER_ID, DELIVERY_ID, INVOICE_TYPE)
+                    VALUES(:ID, :INVOICE_NUM, :INVOICE_DATE, :STAFF_ID, :RECIPIENT_PARTNER_ID, :DELIVERER_PARTNER_ID, :DELIVERY_ID, :INVOICE_TYPE);
+  FOR SELECT
+         ITEM_ID,
+         DELIVERY_QUANTITY,
+         DELIVERY_PRICE
+       from
+         DELIVERY_DETAIL_TBL
+       WHERE
+         DELIVERY_MASTER_ID = :DELIVERY_ID
+       INTO
+         :ITEM_ID,
+         :DELIVERY_QUANTITY,
+         :DELIVERY_PRICE
+   DO
+     BEGIN
+        INVOICE_DETAIL_ID = GEN_ID(ID_GEN_INVOICEDETAILTBL,1);
+        INSERT INTO INVOICE_DETAIL_TBL (INVOICE_DETAIL_ID,INVOICE_MASTER_ID,ITEM_ID,QUANTITY, PRICE)
+        VALUES(:INVOICE_DETAIL_ID,:ID,:ITEM_ID,:DELIVERY_QUANTITY, :DELIVERY_PRICE);
+     END
+    suspend;
+end^
+
+SET TERM ; ^
+
+GRANT INSERT ON INVOICE_MASTER_TBL TO PROCEDURE INSERT_INVOICE_MASTER;
+
+GRANT SELECT ON DELIVERY_DETAIL_TBL TO PROCEDURE INSERT_INVOICE_MASTER;
+
+GRANT INSERT ON INVOICE_DETAIL_TBL TO PROCEDURE INSERT_INVOICE_MASTER;
+
+GRANT EXECUTE ON PROCEDURE INSERT_INVOICE_MASTER TO SYSDBA;
