@@ -30,7 +30,7 @@ void __fastcall TAddStaffForm::FormShow(TObject *Sender)
 void __fastcall TAddStaffForm::NextBtn1Click(TObject *Sender)
 {
         if(FNameEdit->Text=="" || LNameEdit->Text=="")
-                ShowMessage("Please, fill all fields with *!");
+                ShowMessage("Моля, попълнете всички полета със *!");
         else
                 PageControl1->ActivePage=TabSheet2;
 }
@@ -49,7 +49,7 @@ void __fastcall TAddStaffForm::NextBtn2Click(TObject *Sender)
         if(DModule->StaffTbl->FieldByName("IS_ADMIN")->AsInteger == 1)
                 AdminCheck->Visible=true;
         if(TelEdit->Text=="" || CityEdit->Text=="" || StreetEdit->Text=="")
-                ShowMessage("Please, fill all fields with  *!");
+                ShowMessage("Моля, попълнете всички полета със *!");
         else
                 PageControl1->ActivePage=TabSheet3;
 }
@@ -69,11 +69,11 @@ void __fastcall TAddStaffForm::SaveBtnClick(TObject *Sender)
         DModule->Query->Open();
         if(DModule->StaffTbl->FieldByName("USERNAME")->AsString == UNameEdit->Text &&
         StaffForm->ActiveControl==StaffForm->NewStaffButton)
-                ShowMessage("Username already exist!");
+                ShowMessage("Има служител с такова потребителско име!");
         else if(UNameEdit->Text=="" || PassEdit->Text=="" || ConfPassEdit->Text=="")
-                ShowMessage("Please, fill all fields!");
+                ShowMessage("Моля, попълнете всички полета!");
         else if(PassEdit->Text != ConfPassEdit->Text)
-                ShowMessage("The passwords don't match!");
+                ShowMessage("Паролите не съвпадат!");
         else
                 ModalResult = mrOk;
 }
