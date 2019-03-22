@@ -1,0 +1,51 @@
+//---------------------------------------------------------------------------
+
+#ifndef AddInvMasH
+#define AddInvMasH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <Buttons.hpp>
+#include <ComCtrls.hpp>
+#include <ExtCtrls.hpp>
+#include <DBGrids.hpp>
+#include <Grids.hpp>
+//---------------------------------------------------------------------------
+class TAddInvMasForm : public TForm
+{
+__published:	// IDE-managed Components
+        TGroupBox *GroupBox2;
+        TPanel *Panel1;
+        TLabel *Label3;
+        TEdit *DelivererEdit;
+        TLabel *Label4;
+        TEdit *RecipientEdit;
+        TLabel *Label1;
+        TEdit *StaffEdit;
+        TLabel *Label6;
+        TEdit *InvNumEdit;
+        TLabel *Label7;
+        TDateTimePicker *DateTimePicker1;
+        TBitBtn *OkBtn;
+        TRadioGroup *RadioGroup1;
+        TBitBtn *BitBtn2;
+        void __fastcall DelivererEditClick(TObject *Sender);
+        void __fastcall RadioGroup1Click(TObject *Sender);
+        void __fastcall RecipientEditClick(TObject *Sender);
+        void __fastcall OkBtnClick(TObject *Sender);
+        void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+private:	// User declarations
+public:
+        int invnum;
+        int RecipientID;
+        int DelivererID;
+        int DelID;
+        	// User declarations
+        __fastcall TAddInvMasForm(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TAddInvMasForm *AddInvMasForm;
+//---------------------------------------------------------------------------
+#endif
